@@ -1,0 +1,101 @@
+package DS;
+
+public class LinkListNode {
+private int data;
+private LinkListNode Next;
+public LinkListNode() {
+	// TODO Auto-generated constructor stub
+this.Next=null;
+}
+public int getData() {
+	return data;
+}
+public void setData(int data) {
+	this.data = data;
+}
+public LinkListNode getNext() {
+	return Next;
+}
+public void setNext(LinkListNode next) {
+	this.Next = next;
+}
+
+}
+
+package DS;
+
+public class Linklist {
+private static  int length;
+	public Linklist()
+	{
+		 length=0;
+	}
+	public  int listLength(LinkListNode  head)
+	{ 
+	LinkListNode currentNode= head;
+	while (currentNode!= null)
+	{
+		length++;
+		currentNode=currentNode.getNext();
+	}	
+		return length;
+	}
+	
+	public LinkListNode insert(LinkListNode head, int data,int position) {
+		LinkListNode new_node= new LinkListNode();
+		new_node.setData(data);
+		new_node.setNext(null);
+		if(position < 0)
+		{ 
+			position=0;
+		}
+		if(position>length)
+		{
+			position=length;
+		}
+		if(head==null)
+		{
+			head=new_node;
+		}
+		else if (position==0) {
+			new_node.setNext(head);
+			head=new_node;
+		}
+		else {
+			LinkListNode temp=head;
+			for(int i=1;i<position;i++)
+			{
+				temp=temp.getNext();
+			}
+			new_node.setNext(temp.getNext());
+			temp.setNext(new_node);
+		}
+		length++;
+		return head;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+LinkListNode node = new LinkListNode();
+LinkListNode node1 = new LinkListNode();
+LinkListNode node2 = new LinkListNode();
+
+node.setData(1);
+node1.setData(2);
+node2.setData(3);
+node1.setNext(node2);
+node.setNext(node1); 
+Linklist list=new Linklist();
+int lengh=list.listLength(node);
+ System.out.println("Length of list:"+lengh);
+ System.out.println("Link list is ");
+ while(node.getNext()!=null)
+ {
+	 System.out.println(node.getNext()+" \t");
+	 
+ }
+		
+		
+		
+	}
+
+}
